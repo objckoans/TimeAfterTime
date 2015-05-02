@@ -45,6 +45,21 @@ int main(int argc, const char * argv[]) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         NSString *dayString = [[formatter weekdaySymbols] objectAtIndex:(weekday-1)];
         NSLog(@"Day of the week in string: %@", dayString);
+        
+        // From given date and time, calculate seconds since then
+        // composing the date object
+        NSDateComponents *comps2 = [[NSDateComponents alloc] init];
+        [comps2 setYear:1976];
+        [comps2 setMonth:10];
+        [comps2 setDay:10];
+        [comps2 setHour:12];
+        [comps2 setMinute:10];
+        [comps2 setSecond:0];
+        NSDate *comps2Date = [cal dateFromComponents:comps2];
+        
+        // calculate seconds from `comps2Date` to `now`
+        double secondsSinceEarlierDate = [now timeIntervalSinceDate:comps2Date];
+        NSLog(@"Seconds since comps2: %f", secondsSinceEarlierDate);
     }
     return 0;
 }
